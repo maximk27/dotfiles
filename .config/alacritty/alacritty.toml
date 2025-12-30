@@ -10,48 +10,29 @@ save_to_clipboard = true
 [env]
 TERM = "xterm-256color"
 
-
-# [cursor.style]
-# shape = "Beam"
-
-# blinking = "Always"
-#
-# [cursor]
-# blink_interval = 800
-
-
 [colors.cursor]
 text = "#282a36"
 cursor = "#A0A0A0"
 
 [window]
-opacity = 0.99
+opacity = 0.995
 padding.x = 10
 padding.y = 10
 startup_mode = "Maximized"
 decorations = "None"
 
 [font]
-offset.x = 0                              # For letter spacing (default: 0)
-offset.y = 0                              # For line spacing (default: 0)
-# normal.family = "JetBrainsMono Nerd Font"
-normal.family = "JetBrainsMonoNL NFP Light"
-# normal.family = "SauceCodePro Nerd Font"
-# normal.family = "InputMono Nerd Font Mono"
-size = 13
+offset.x = 0
+offset.y = 0
+normal.family = "JetBrainsMono Nerd Font"
+size = 13.5
 
-# Dracula theme for Alacritty
-# https://draculatheme.com/alacritty
-#
-# Color palette
-# https://spec.draculatheme.com
-#
-# Instructions
-# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+glyph_offset.x = 0
+glyph_offset.y = 0
 
+# dracula theme
 [colors.primary]
 
-# background = "#282a36"
 background = "#212229"
 foreground = "#f8f8f2"
 bright_foreground = "#ffffff"

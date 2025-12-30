@@ -9,46 +9,26 @@ PATH="$PATH:$HOME/myscripts"
 PATH="$PATH:/home/maximk/.cargo/bin"
 PATH="$PATH:$HOME/tools"
 
+# add go binaries
+PATH="$PATH:/usr/local/go/bin:/home/maximk/go/bin"
+
 # add john tools
 PATH="$PATH:/home/maximk/builds/john/run"
 
-# yazi
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
-}
+# run arbitrary single file code
+function run() {
+    local filename=$1
+    local name="${filename%%.*}"
+    local ext="${filename##*.}"
 
-# ******** networking
-#
-# make xterm larger
-export XTERM="xterm -fa 'Monospace' -fs 16"
-
-function mnbash() {
-    if [ $# -ne 1 ]; then
-        echo "Usage: $0 <hostname>"
-        exit 1
+    if [[ $ext == "cpp" ]]; then
+        g++ -std=c++23 -g -Wall -o $name.out $filename && ./$name.out
+    elif [[ $ext == "c" ]]; then
+        gcc -std=c23 -g -Wall -o $name.out $filename && ./$name.out
+    elif [[ $ext == "rs" ]]; then
+        rustc -o $name.out $filename && ./$name.out
     fi
-
-    local host_process=$(ps aux | grep "mininet:$1" | grep -v grep)
-    if [ -z "$host_process" ]; then
-        echo "No mininet process found for $1"
-        exit 1
-    fi
-
-    local host_pid=$(echo $host_process | awk '{print $2}')
-    sudo mnexec -a $host_pid bash
 }
-
-
-
-# is container file
-# sudo chcon -Rt container_file_t .
-
-# reset container file
-# sudo restorecon -Rv ~/project
 
 # other remapping
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME/"
@@ -120,16 +100,14 @@ function cont() {
 
 alias diff="diff -yb"
 
-
 # variables below
 export EDITOR=nvim
 export CMAKE_GENERATOR=Ninja
-
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # PATH=$PATH:/home/maximk/builds/john/

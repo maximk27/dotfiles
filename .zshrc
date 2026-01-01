@@ -1,5 +1,4 @@
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="geoffgarside"
+export ZSH="$HOME/.oh-my-zsh" ZSH_THEME="geoffgarside"
 plugins=(zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
@@ -89,7 +88,8 @@ alias py="python"
 # rust
 alias c="cargo"
 
-bindkey "^[[Z" autosuggest-accept
+# zsh binds
+bindkey "^k" autosuggest-accept
 
 # hacks
 alias john="~/builds/john/run/john"

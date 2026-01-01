@@ -1,7 +1,7 @@
 [keyboard]
 bindings = [
     # { key= "Back", mods= "Alt", chars= "\u0017" }
-  { key="Key0",   mods="Control", action="ResetFontSize" }
+  { key="Key0",   mods="Control", action="ResetFontSize" },
 ]
 
 [selection]

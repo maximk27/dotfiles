@@ -1,0 +1,7 @@
+max_width = 80
+use_small_heuristics = "Off"
+force_multiline_blocks = true
+fn_single_line = false
+control_brace_style = "AlwaysNextLine"
+imports_granularity = "Module"
+group_imports = "StdExternalCrate"

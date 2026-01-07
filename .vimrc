@@ -3,6 +3,9 @@ colorscheme slate
 syntax on
 filetype on
 
+set ttimeout
+set ttimeoutlen=10
+
 set clipboard=unnamedplus
 set tabstop=4
 set shiftwidth=4
@@ -19,13 +22,20 @@ inoremap <C-p> <Up>
 inoremap <C-n> <Down>
 inoremap <C-e> <End>
 
-nnoremap J 5j
-nnoremap K 5k
+nnoremap ;q :q
+nnoremap ;w :w
+
+nnoremap v V
+nnoremap V v
+
+nnoremap <ESC>j 5j
+nnoremap <ESC>k 5k
 nnoremap <C-u> 10<C-y>
 nnoremap <C-d> 10<C-e>
 
-vnoremap J 5j
-vnoremap K 5k
+
+vnoremap <ESC>j 5j
+vnoremap <ESC>k 5k
 vnoremap <C-u> 10<C-y>
 vnoremap <C-d> 10<C-e>
 

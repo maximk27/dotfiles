@@ -6,13 +6,9 @@ export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 PATH="$PATH:$HOME/myscripts"
 PATH="$PATH:/home/maximk/.cargo/bin"
-PATH="$PATH:$HOME/tools"
 
 # add go binaries
 PATH="$PATH:/usr/local/go/bin:/home/maximk/go/bin"
-
-# add john tools
-PATH="$PATH:/home/maximk/builds/john/run"
 
 # run arbitrary single file code
 function run() {
@@ -35,12 +31,16 @@ alias pbcopy="xclip -sel clip"
 alias df="duf"
 alias ls="eza --icons"
 alias open="xdg-open"
-tree() {
-    local depth=${1:-1}
-    eza --icons -TL "$depth"
+
+function tree() {
+    name=${1:-"."}
+    count=${2:-"3"}
+    eza --icons -T $name -L $count
 }
+
 eval "$(zoxide init --cmd cd zsh)"
 alias nb="ninja"
+
 alias e="nvim ."
 
 # git stuff
@@ -88,17 +88,22 @@ alias py="python"
 # rust
 alias c="cargo"
 
+# go
+alias g="go"
+
 # zsh binds
 bindkey "^k" autosuggest-accept
 
 # hacks
-alias john="~/builds/john/run/john"
 function cont() {
     touch z_expected.txt
     cp ~/cpp/template/Makefile .
 }
 
 alias diff="diff -yb"
+
+# ctf
+alias disas="objdump -drwC -Mintel"
 
 # variables below
 export EDITOR=nvim
@@ -110,4 +115,12 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# PATH=$PATH:/home/maximk/builds/john/
+# TODO: make system job to git pull from these repos to update
+
+# tools from special binaries
+PATH="$PATH:$HOME/tools/FlameGraph"
+PATH="$PATH:$HOME/tools/john/run"
+PATH="$PATH:$HOME/tools/ghidra"
+PATH="$PATH:$HOME/tools/binaryninja"
+
+alias john="$HOME/tools/john/run/john"

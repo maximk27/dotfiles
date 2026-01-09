@@ -25,6 +25,9 @@ function run() {
     fi
 }
 
+# access tempates
+source ~/templates/script.bash
+
 # other remapping
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME/"
 alias pbcopy="xclip -sel clip"
@@ -59,6 +62,7 @@ alias gd="git diff"
 alias gb="git branch"
 alias gsh="git show"
 alias grh="git reset"
+alias grhh="git reset --hard"
 alias grs="git restore --staged"
 alias gsta="git stash save"
 alias gstp="git stash pop"
@@ -109,11 +113,17 @@ alias disas="objdump -drwC -Mintel"
 export EDITOR=nvim
 export CMAKE_GENERATOR=Ninja
 
+# required vim
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# required pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
 
 # TODO: make system job to git pull from these repos to update
 

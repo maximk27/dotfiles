@@ -78,12 +78,10 @@ alias glg="git log -n5"
 # github
 alias ghr="gh repo view --web"
 alias ghl="gh pr list --web"
+alias ghc="gh pr create"
 
 # cpp
-alias cmakel="cmake -B build"
-alias nbl="ninja -C build"
-alias makel="make -C build"
-alias tl="ctest --test-dir build"
+alias tl="ctest"
 alias make="make -j8"
 
 # python

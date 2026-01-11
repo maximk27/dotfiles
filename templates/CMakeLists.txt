@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
-project(...)
+
+# to be changed!
+project(name)
 
 # shorter alias, default debug
 if(NOT DEFINED Build)
@@ -42,3 +44,12 @@ else()
 endif()
 
 
+# file(GLOB_RECURSE SRCS "${PROJECT_SOURCE_DIR}/src/*.cpp")
+
+# file(GLOB tests ${PROJECT_SOURCE_DIR}/tests/*.cpp)
+# foreach(src IN LISTS tests)
+#   get_filename_component(name ${src} NAME_WE)
+#   add_executable(${name} ${src})
+#   target_link_libraries(${name} PRIVATE ${PROJECT_NAME} platform utils)
+#   add_test(NAME ${name} COMMAND ${name})
+# endforeach()

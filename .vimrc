@@ -12,9 +12,10 @@ set shiftwidth=4
 set smartindent
 set scrolloff=8
 set noswapfile
-set signcolumn=yes
 set backspace=indent,eol,start
 
+set signcolumn=yes
+highlight SignColumn guibg=NONE ctermbg=NONE
 
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>

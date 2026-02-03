@@ -1,0 +1,35 @@
+# TODO: app name
+APP=app
+
+# TODO: io dirs
+SRC_DIR=src
+BUILD_DIR=build
+BIN_DIR=bin
+
+OUTPUT_DIR=$(BUILD_DIR)/$(BIN_DIR)
+TARGET=$(OUTPUT_DIR)/$(APP)
+
+CXX = g++
+CXXFLAGS = -std=c++23 -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -Wno-sign-compare -Wfloat-equal -fsanitize=undefined
+
+# collect dependencies
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+
+
+# default target
+all: $(TARGET)
+
+# make obj 
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp 
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# link program
+$(TARGET): $(OBJS) 
+	@mkdir -p $(@D)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@
+
+.PHONY: clean
+clean: 
+	rm -r $(TARGET) $(BUILD_DIR)/*.o

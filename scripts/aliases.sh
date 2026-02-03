@@ -26,6 +26,7 @@ alias gai="git add -i"
 alias gr="git remote"
 alias glgg="git log --graph"
 alias glg="git log -n5"
+alias gw="git worktree"
 
 # github
 alias ghr="gh repo view --web"
@@ -39,6 +40,7 @@ alias df="duf"
 alias ls="eza --icons"
 alias open="xdg-open"
 alias diff="diff -yb"
+alias tar="tar -xzvf"
 
 function tree() {
     name=${1:-"."}
@@ -49,11 +51,10 @@ function tree() {
 # coding
 alias nb="ninja"
 alias e="nvim ."
-alias obsidian="/home/maximk/Applications/Obsidian-1.10.6_3b574c5252a7022df64d388e8562ea2c.AppImage"
 
 # cpp
 alias tl="ctest"
-alias make="make -j8"
+alias make="bear -- make -j8"
 
 # python
 alias py="python"

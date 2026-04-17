@@ -27,6 +27,7 @@ alias gr="git remote"
 alias glgg="git log --graph"
 alias glg="git log -n5"
 alias gw="git worktree"
+alias gar="git archive HEAD --output=out.tar"
 
 # github
 alias ghr="gh repo view --web"

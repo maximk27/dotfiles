@@ -1,7 +1,11 @@
 import sys
 
-input = sys.stdin.readline
+
 write = sys.stdout.write
+
+
+def input():
+    return sys.stdin.readline().strip()
 
 
 def solve():

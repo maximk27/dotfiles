@@ -1,26 +1,22 @@
 function template() {
-    choice=$1
+    local choice=$1
+    local dir="$HOME/templates"
 
-    if [[ $choice == "make-cpp" ]]; then
-        # competition makefile
-        cp ~/templates/MakefileCPP Makefile
-    elif [[ $choice == "make-proj" ]]; then
-        # project makefile
-        cp ~/templates/MakefileProj Makefile
+    declare -A map=(
+        ["make-cpp"]="MakefileCPP"
+        ["make-proj"]="MakefileProj"
+        ["cmake"]="CMakeLists.txt"
+        ["cpp"]="setup.cpp"
+        ["py"]="setup.py"
+        [".clangd"]=".clangd"
+        [".clang-format"]=".clang-format"
+    )
 
-    elif [[ $choice == "cmake" ]]; then
-        # project makefile
-        cp ~/templates/CMakeLists.txt .
-
-    elif [[ $choice == "cpp" ]]; then
-        # competition cpp
-        cp ~/templates/setup.cpp .
-
-    elif [[ $choice == "py" ]]; then
-        # competition python
-        cp ~/templates/setup.py .
+    if [[ -n ${map[$choice]} ]]; then
+        cp "$dir/${map[$choice]}" .
     else
-        echo "error: unrecognized"
-        echo "choose from: [make-cpp, make-proj, cmake, cpp, py]"
+        echo "error: unrecognized template"
+        echo "choose from: ${!map[*]}"
+        return 1
     fi
 }

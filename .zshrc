@@ -6,9 +6,12 @@ plugins=(zsh-syntax-highlighting zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+PATH="$PATH:$HOME/.local/share/sapling"
 PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 PATH="$PATH:/home/maximk/.cargo/bin"
 PATH="$PATH:/usr/local/go/bin:/home/maximk/go/bin"
+PATH="$PATH:/home/maximk/.dotnet/tools"
 
 # run arbitrary single file code
 source ~/scripts/runner.sh
@@ -50,4 +53,3 @@ PATH="$PATH:$HOME/tools/binaryninja"
 
 alias john="$HOME/tools/john/run/john"
 alias matlab="$HOME/matlab/bin/matlab"
-# zprof

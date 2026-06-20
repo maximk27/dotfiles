@@ -1,4 +1,4 @@
-colorscheme slate
+colorscheme sorbet
 
 syntax on
 filetype on

@@ -4,7 +4,7 @@ modmap:
     #   only: [AT Translated Set 2 keyboard]
     remap:
       CapsLock: Control_L
-      Control_L: CapsLock
+      Control_R: CapsLock
 keymap:
   - name: non_term
     # device: 

@@ -1,3 +1,11 @@
+# new stuff
+alias jk="openclaude"
+
+# sl stuff
+alias hg="sl"
+alias hgs="sl status -L 5"
+alias hgh="sl hisotry"
+
 # git stuff
 alias gaa="git add -A"
 alias gap="git add -p"
@@ -41,7 +49,7 @@ alias df="duf"
 alias ls="eza --icons"
 alias open="xdg-open"
 alias diff="diff -yb"
-alias tar="tar -xzvf"
+# alias tar="tar -xzvf"
 
 function tree() {
     name=${1:-"."}
@@ -70,4 +78,4 @@ alias g="go"
 alias disas="objdump -drwC -Mintel"
 
 # for seeing
-alias alias_help="cat ~/scripts/aliases.sh | less"
+alias aliass="cat ~/scripts/aliases.sh | less"

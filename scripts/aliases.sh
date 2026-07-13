@@ -1,41 +1,51 @@
 # new stuff
-alias jk="openclaude"
+alias cc="openclaude"
 
-# sl stuff
-alias hg="sl"
-alias hgs="sl status -L 5"
-alias hgh="sl hisotry"
+# python
+alias uvr="uv run"
+alias uvb="uv build"
+alias uvl="uv sync"
+alias uva="uv add"
+alias uvf="uv run ruff check . --fix && uv run ruff format ."
+
+# jj
+alias hg="jj"
+alias hgs="jj st"
+alias hgha="jj log -r '@ | ancestors(remote_bookmarks().., 2) | trunk()'"
+alias hgh="jj log"
+alias hgu="jj edit"
+alias hge="jj new"
+alias hgq="jj abandon"
+alias hgc="jj describe"
+
+alias hgg="hg git"
+alias hgp="jj git push"
+alias hgl="jj git pull"
+
+alias hgre="jj rebase"
+alias hgsq="jj squash"
+alias hgsp="jj split"
+
+function hgw() {
+    local target="${1:-}"
+    jj show --git --no-pager $target | diff2html -i stdin --style side
+}
 
 # git stuff
+alias gi="git init"
 alias gaa="git add -A"
-alias gap="git add -p"
 alias gsw="git switch"
 alias gc="git commit --verbose"
 alias gca="git commit --amend"
 alias gp="git push"
-alias gpu="git push -u origin main"
 alias gl="git pull"
-alias gck="git checkout"
 alias gst="git status"
-alias gr="git remote"
-alias gd="git diff"
-alias gb="git branch"
-alias gsh="git show"
-alias grh="git reset"
-alias grhh="git reset --hard"
-alias grs="git restore --staged"
-alias gsta="git stash save"
-alias gstp="git stash pop"
 alias gf="git fetch"
 alias gm="git merge"
 alias grb="git rebase"
-alias gcp="git cherry-pick"
-alias gai="git add -i"
 alias gr="git remote"
-alias glgg="git log --graph"
-alias glg="git log -n5"
+alias glg="git log --graph -n5"
 alias gw="git worktree"
-alias gar="git archive HEAD --output=out.tar"
 
 # github
 alias ghr="gh repo view --web"

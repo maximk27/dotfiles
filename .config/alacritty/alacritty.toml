@@ -12,7 +12,8 @@ TERM = "xterm-256color"
 
 [colors.cursor]
 text = "#282a36"
-cursor = "#A0A0A0"
+# cursor = "#A0A0A0"
+cursor = "#000000"
 
 [colors.vi_mode_cursor]
 
@@ -21,7 +22,7 @@ cursor = "CellForeground"
 
 
 [window]
-opacity = 0.95
+opacity = 0.99
 padding.x = 10
 padding.y = 10
 startup_mode = "Maximized"
@@ -98,6 +99,7 @@ glyph_offset.y = 0
 # catpuccin
 [colors.primary]
 background = "#eff1f5"
+# background = "#FFFFFF"
 foreground = "#4c4f69"
 dim_foreground = "#8c8fa1"
 bright_foreground = "#4c4f69"

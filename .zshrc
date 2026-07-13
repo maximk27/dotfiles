@@ -27,6 +27,15 @@ source ~/scripts/aliases.sh
 # zsh binds
 bindkey "^k" autosuggest-accept
 
+jj-status-log-widget() {
+    # Clear the current line buffer
+    BUFFER="jj log -n 5 && jj status"
+    # Accept the line (simulates pressing Enter)
+    zle accept-line
+}
+zle -N jj-status-log-widget
+bindkey '^R' jj-status-log-widget
+
 # variables below
 export EDITOR=nvim
 export CMAKE_GENERATOR=Ninja

@@ -1,4 +1,4 @@
-colorscheme sorbet
+colorscheme delek
 
 syntax on
 filetype on

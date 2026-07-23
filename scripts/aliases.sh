@@ -1,5 +1,11 @@
 # new stuff
 alias cc="openclaude"
+alias fs="fzf --popup 80% --bind 'enter:become(vim {})'"
+
+function cpi() {
+    local file
+    file=$(ls ~/templates | fzf --popup 80%) && cp ~/templates/"$file" .
+}
 
 # python
 alias uvr="uv run"

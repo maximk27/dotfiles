@@ -16,9 +16,6 @@ PATH="$PATH:/home/maximk/.dotnet/tools"
 # run arbitrary single file code
 source ~/scripts/runner.sh
 
-# access tempates
-source ~/templates/script.bash
-
 eval "$(zoxide init --cmd cd zsh)"
 
 # all most convenience alias

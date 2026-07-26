@@ -1,7 +1,15 @@
 # new stuff
 alias cc="openclaude"
-alias fs="fzf --popup 80% --bind 'enter:become(vim {})'"
 
+# fzf
+local fzf_open() {
+    local dir="${1:-.}"
+    local file
+    file=$(ls "$dir" | fzf --popup 80%) && open "$dir/$file"
+}
+function fsd() { fzf_open ~/Downloads; }
+function fsd() { fzf_open ~/books; }
+alias fs="fzf --popup 80% --bind 'enter:become(vim {})'"
 function cpi() {
     local file
     file=$(ls ~/templates | fzf --popup 80%) && cp ~/templates/"$file" .
@@ -23,14 +31,16 @@ alias hgu="jj edit"
 alias hge="jj new"
 alias hgq="jj abandon"
 alias hgc="jj describe"
+alias hgba="jj b a"
+alias hgbap="jj b a && jj git push"
 
 alias hgg="hg git"
 alias hgp="jj git push"
 alias hgl="jj git pull"
 
 alias hgre="jj rebase"
-alias hgsq="jj squash"
-alias hgsp="jj split"
+alias hgsqu="jj squash"
+alias hgspl="jj split"
 
 function hgw() {
     local target="${1:-}"

@@ -8,17 +8,18 @@ bindings = [
 save_to_clipboard = true
 
 [env]
-TERM = "xterm-256color"
+TERM = "alacritty"
+
+[cursor.style]
+shape = "Beam"
+
+[cursor.vi_mode_style]
+shape = "Block"
 
 [colors.cursor]
 text = "#282a36"
 # cursor = "#A0A0A0"
 cursor = "#000000"
-
-[colors.vi_mode_cursor]
-
-text = "CellBackground"
-cursor = "CellForeground"
 
 [window]
 opacity = 0.99

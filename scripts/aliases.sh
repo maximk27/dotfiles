@@ -2,13 +2,16 @@
 alias cc="openclaude"
 
 # fzf
-local fzf_open() {
+local fzf_action() {
     local dir="${1:-.}"
+    local cmd="${2:-open}"
     local file
-    file=$(ls "$dir" | fzf --popup 80%) && open "$dir/$file"
+    file=$(ls "$dir" | fzf --popup 80%) && "$cmd" "$dir/$file"
 }
-function fsd() { fzf_open ~/Downloads; }
-function fsd() { fzf_open ~/books; }
+
+
+function fsd() { fzf_action ~/Downloads; }
+function fsb() { fzf_action ~/books; }
 alias fs="fzf --popup 80% --bind 'enter:become(vim {})'"
 function cpi() {
     local file
@@ -29,7 +32,7 @@ alias hgha="jj log -r '@ | ancestors(remote_bookmarks().., 2) | trunk()'"
 alias hgh="jj log"
 alias hgu="jj edit"
 alias hge="jj new"
-alias hgq="jj abandon"
+alias hgQ="jj abandon"
 alias hgc="jj describe"
 alias hgba="jj b a"
 alias hgbap="jj b a && jj git push"
@@ -37,9 +40,11 @@ alias hgbap="jj b a && jj git push"
 alias hgg="hg git"
 alias hgp="jj git push"
 alias hgl="jj git pull"
+alias hg+="jj redo"
+alias hg-="jj undo"
 
 alias hgre="jj rebase"
-alias hgsqu="jj squash"
+alias hgq="jj squash"
 alias hgspl="jj split"
 
 function hgw() {

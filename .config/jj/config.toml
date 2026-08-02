@@ -1,0 +1,26 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[templates]
+draft_commit_description = "builtin_draft_commit_description_with_diff"
+
+[user]
+name = "maximk27"
+email = "maximk@umich.edu"
+
+[ui]
+default-command = "log"
+
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
+]
+merge-tool-edits-conflict-markers = true
+
+[merge-tools.meld]
+program = "meld"
+merge-args = ["$left", "$base", "$right", "-o", "$output"]
+merge-tool-edits-conflict-markers = false
+
+

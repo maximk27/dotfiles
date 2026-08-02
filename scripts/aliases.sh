@@ -51,6 +51,7 @@ function hgw() {
     local target="${1:-}"
     jj show --git --no-pager $target | diff2html -i stdin --style side
 }
+alias hgd="hg diff"
 
 # git stuff
 alias gi="git init"

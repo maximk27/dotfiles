@@ -77,10 +77,12 @@ alias ghc="gh pr create"
 # shell commmands
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME/"
 alias pbcopy="xclip -sel clip"
+alias pbpaste="xclip -selection clipboard -o"
+
 alias df="duf"
 alias ls="eza --icons"
 alias open="xdg-open"
-alias diff="diff -yb"
+alias di="diff -yb"
 # alias tar="tar -xzvf"
 
 function tree() {

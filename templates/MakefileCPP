@@ -8,13 +8,14 @@ CXXFLAGS = -std=c++23 -Wall -Wextra -Wshadow -Wconversion -Wno-sign-conversion -
 	$(CXX) $(CXXFLAGS) -o $@ $<
 
 _%: %.out
-	-./$*.out > z_actual.txt 
-	@cat z_actual.txt;
+	./$*.out 
 
 
 +%: %.out
-	-./$*.out < $*.in > z_actual.txt
-	@cat z_actual.txt;
+	./$*.out < z_input.txt 
+
+++%: %.out
+	./$*.out < z_input.txt > z_actual.txt 
 
 clean: 
 	echo "cleaning"

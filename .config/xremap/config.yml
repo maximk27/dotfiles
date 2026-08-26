@@ -4,24 +4,34 @@ modmap:
       only: "AT Translated Set 2 keyboard"
     remap:
       CapsLock: Control_L
-      Control_R: CapsLock
+      Alt_R: CapsLock
 
 keymap:
   - name: non_term
     device:
       only: "AT Translated Set 2 keyboard"
-    application:
-      not: [Alacritty, Code]
     remap:
-      C-f: right
-      C-b: left
-      C-p: up
-      C-n: down
-      C-e: end
+      M-l: right
+      M-h: left
+      M-k: up
+      M-j: down
+      M-e: end
       M-backspace: C-backspace
       M-f: C-right
       M-b: C-left
-      C-Shift-slash: C-f
+      M-0: F9
+      M-9: F8
+      M-q: delete
+      M-1: F1
+      M-2: F2
+      M-3: F3
+      M-4: F4
+      M-t: F12
+      M-d: C-x
+      M-p: C-v
+      M-y: C-c
+      M-u: [Home, S-End]
+
 
   - name: term
     application:
@@ -29,14 +39,3 @@ keymap:
     remap:
       C-backspace: C-w
 
-  - name: code
-    device:
-      only: "AT Translated Set 2 keyboard"
-    application:
-      only: [Code]
-    remap:
-      C-f: right
-      C-b: left
-      C-e: end
-      M-f: C-right
-      M-b: C-left

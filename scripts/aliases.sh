@@ -1,6 +1,9 @@
 # new stuff
 alias cc="openclaude"
 
+# umich
+alias vcs="ssh -f -L 5951:localhost:5951 maximk@login-course.engin.umich.edu 'sleep 30' && vncviewer localhost:5951"
+
 # fzf
 local fzf_action() {
     local dir="${1:-.}"

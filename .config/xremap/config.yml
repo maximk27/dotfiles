@@ -1,7 +1,7 @@
 modmap:
   - name: all
     device:
-      only: "AT Translated Set 2 keyboard"
+      only: ["AT Translated Set 2 keyboard", "Logitech MX Keys Mini"]
     remap:
       CapsLock: Control_L
       Alt_R: CapsLock
@@ -9,7 +9,7 @@ modmap:
 keymap:
   - name: non_term
     device:
-      only: "AT Translated Set 2 keyboard"
+      only: ["AT Translated Set 2 keyboard", "Logitech MX Keys Mini"]
     remap:
       M-l: right
       M-h: left

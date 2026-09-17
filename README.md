@@ -15,6 +15,7 @@ Gnome settings
 dconf load /org/gnome/desktop/peripherals/keyboard/ < keyboard.ini
 dconf load /org/gnome/desktop/wm/keybindings/ < wm-keybindings.ini
 dconf load /org/gnome/settings-daemon/plugins/media-keys/ < media-keys.ini
+dconf load /org/gnome/settings-daemon/plugins/color/ < night-light.ini
 ```
 
 ## Maintain
@@ -30,5 +31,6 @@ Gnome settings
 dconf dump /org/gnome/desktop/peripherals/keyboard/ > keyboard.ini
 dconf dump /org/gnome/desktop/wm/keybindings/ > wm-keybindings.ini
 dconf dump /org/gnome/settings-daemon/plugins/media-keys/ > media-keys.ini
+dconf dump /org/gnome/settings-daemon/plugins/color/ > night-light.ini
 ```
 

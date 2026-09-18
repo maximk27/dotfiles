@@ -18,7 +18,7 @@ function fsb() { fzf_action ~/books; }
 alias fs="fzf --popup 80% --bind 'enter:become(vim {})'"
 function cpi() {
     local file
-    file=$(ls ~/templates | fzf --popup 80%) && cp ~/templates/"$file" .
+    file=$(ls -A ~/templates | fzf --popup 80%) && cp ~/templates/"$file" .
 }
 
 # python

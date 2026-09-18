@@ -83,7 +83,7 @@ alias pbcopy="xclip -sel clip"
 alias pbpaste="xclip -selection clipboard -o"
 
 alias df="duf"
-alias ls="eza --icons"
+alias ls="eza --icons=auto"
 alias open="xdg-open"
 alias di="diff -yb"
 # alias tar="tar -xzvf"

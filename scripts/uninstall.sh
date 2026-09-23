@@ -6,7 +6,7 @@ dot() {
 
 # 1. Remove all files placed into $HOME
 dot ls-tree -r --name-only HEAD | while IFS= read -r f; do
-    rm -f "$HOME/$f"
+    rm -rf "$HOME/$f"
 done
 
 # 2. Restore backup

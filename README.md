@@ -6,8 +6,16 @@ Setup
 git clone --bare git@github.com:maximk27/dotfiles.git "$HOME/.dotfiles"
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot config status.showUntrackedFiles no
-# if any conflicting files, moves to ~/.dotfiles-backup/, replacing
-sh ~/scripts/replace_with_backup.sh
+
+# if any conflicting files, moves to $backup, replacing
+backup="$HOME/.dotfiles-backup"
+files=$(dot checkout 2>&1 | egrep "^\s+\." | awk '{print $1}')
+if [ -n "$files" ]; then
+    mkdir -p "$backup"
+    echo "$files" | xargs -I{} mv {} "$backup/{}"
+    echo "backup on $files"
+fi
+dot checkout
 ```
 
 

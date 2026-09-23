@@ -11,7 +11,6 @@ dot config status.showUntrackedFiles no
 backup="$HOME/.dotfiles-backup"
 files=$(dot checkout 2>&1 | egrep "^\s+\S" | awk '{print $1}')
 if [ -n "$files" ]; then
-    mkdir -p "$backup"
     echo "$files" | while IFS= read -r f; do
         mkdir -p "$backup/$(dirname "$f")"
         mv "$f" "$backup/$f"

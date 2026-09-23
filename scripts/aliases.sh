@@ -39,6 +39,7 @@ alias hgQ="jj abandon"
 alias hgc="jj describe"
 alias hgba="jj b a"
 alias hgbap="jj b a && jj git push"
+alias hgrm="jj file untrack"
 
 alias hgg="hg git"
 alias hgp="jj git push"

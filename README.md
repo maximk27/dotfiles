@@ -3,7 +3,7 @@
 
 Setup
 ```
-git clone --bare # git@github.com:maximk27/dotfiles.git
+git clone --bare git@github.com:maximk27/dotfiles.git "$HOME/.dotfiles"
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot config status.showUntrackedFiles no
 # if any conflicting files, moves to ~/.dotfiles-backup/, replacing

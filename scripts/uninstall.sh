@@ -1,5 +1,9 @@
 #!/bin/bash
 
+dot() {
+    /usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+}
+
 # 1. Remove all files placed into $HOME
 dot ls-tree -r --name-only HEAD | while IFS= read -r f; do
     rm -f "$HOME/$f"

@@ -9,12 +9,17 @@ dot config status.showUntrackedFiles no
 
 # if any conflicting files, moves to $backup, replacing
 backup="$HOME/.dotfiles-backup"
-files=$(dot checkout 2>&1 | egrep "^\s+\." | awk '{print $1}')
+files=$(dot checkout 2>&1 | egrep "^\s+\S" | awk '{print $1}')
 if [ -n "$files" ]; then
     mkdir -p "$backup"
-    echo "$files" | xargs -I{} mv {} "$backup/{}"
+    echo "$files" | while IFS= read -r f; do
+        mkdir -p "$backup/$(dirname "$f")"
+        mv "$f" "$backup/$f"
+    done
     echo "backup on $files"
 fi
+
+# bring into system
 dot checkout
 ```
 

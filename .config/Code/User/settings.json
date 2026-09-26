@@ -1,0 +1,25 @@
+{
+    "workbench.colorTheme": "Visual Studio Light",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": [";", "f"], "commands": ["workbench.action.quickOpen"] },
+        { "before": ["<Up>"], "after": ["5", "k"] },
+        { "before": ["<Down>"], "after": ["5", "j"] },
+        { "before": ["<C-u>"], "after": ["1", "0", "<C-y>"] },
+        { "before": ["<C-d>"], "after": ["1", "0", "<C-e>"] },
+        { "before": ["<Right>"], "after": ["<C-w>", "<Right>"] },
+        { "before": ["<Left>"], "after": ["<C-w>", "<Left>"] }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        { "before": ["<Up>"], "after": ["5", "k"] },
+        { "before": ["<Down>"], "after": ["5", "j"] },
+        { "before": ["<C-u>"], "after": ["1", "0", "<C-y>"] },
+        { "before": ["<C-d>"], "after": ["1", "0", "<C-e>"] }
+        ],
+    "workbench.sideBar.location": "right",
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "off",
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+}

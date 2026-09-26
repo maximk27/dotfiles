@@ -3,10 +3,23 @@
 
 Setup
 ```
-git clone --bare # git@github.com:maximk27/dotfiles.git
+git clone --bare git@github.com:maximk27/dotfiles.git "$HOME/.dotfiles"
 alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot config status.showUntrackedFiles no
-dot checkout   
+
+# if any conflicting files, moves to $backup, replacing
+backup="$HOME/.dotfiles-backup"
+files=$(dot checkout 2>&1 | egrep "^\s+\S" | awk '{print $1}')
+if [ -n "$files" ]; then
+    echo "$files" | while IFS= read -r f; do
+        mkdir -p "$backup/$(dirname "$f")"
+        mv "$f" "$backup/$f"
+    done
+    echo "backup on $files"
+fi
+
+# bring into system
+dot checkout
 ```
 
 

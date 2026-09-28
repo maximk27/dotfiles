@@ -22,4 +22,6 @@
     "editor.scrollbar.horizontal": "hidden",
     "editor.overviewRulerBorder": false,
     "editor.hideCursorInOverviewRuler": true,
+    "window.customMenuBarAltFocus": false,
+    "window.enableMenuBarMnemonics": false,
 }

@@ -1,23 +1,22 @@
+# portable stuff first
+source ~/scripts/aliases-core.sh
+
 # new stuff
 alias cc="claude"
-
-# tmux: reattach if a server is running, otherwise start one (continuum restores)
-alias t="tmux attach 2>/dev/null || tmux"
 
 # umich
 alias vcs="ssh -f -L 5951:localhost:5951 maximk@login-course.engin.umich.edu 'sleep 30' && vncviewer localhost:5951"
 
 # fzf
-local fzf_action() {
+_fzf_action() {
     local dir="${1:-.}"
     local cmd="${2:-open}"
     local file
     file=$(ls "$dir" | fzf --popup 80%) && "$cmd" "$dir/$file"
 }
 
-
-function fsd() { fzf_action ~/Downloads; }
-function fsb() { fzf_action ~/books; }
+function fsd() { _fzf_action ~/Downloads; }
+function fsb() { _fzf_action ~/books; }
 alias fs="fzf --popup 80% --bind 'enter:become(vim {})'"
 function cpi() {
     local file
@@ -32,49 +31,10 @@ alias uva="uv add"
 alias uvf="uv run ruff check . --fix && uv run ruff format ."
 
 # jj
-alias hg="jj"
-alias hgs="jj st"
-alias hgha="jj log -r '@ | ancestors(remote_bookmarks().., 2) | trunk()'"
-alias hgh="jj log"
-alias hgu="jj edit"
-alias hge="jj new"
-alias hgQ="jj abandon"
-alias hgc="jj describe"
-alias hgba="jj b a"
-alias hgbap="jj b a && jj git push"
-alias hgrm="jj file untrack"
-
-alias hgg="hg git"
-alias hgp="jj git push"
-alias hgl="jj git pull"
-alias hg+="jj redo"
-alias hg-="jj undo"
-
-alias hgre="jj rebase"
-alias hgq="jj squash"
-alias hgspl="jj split"
-
 function hgw() {
     local target="${1:-}"
     jj show --git --no-pager $target | diff2html -i stdin --style side
 }
-alias hgd="hg diff"
-
-# git stuff
-alias gi="git init"
-alias gaa="git add -A"
-alias gsw="git switch"
-alias gc="git commit --verbose"
-alias gca="git commit --amend"
-alias gp="git push"
-alias gl="git pull"
-alias gst="git status"
-alias gf="git fetch"
-alias gm="git merge"
-alias grb="git rebase"
-alias gr="git remote"
-alias glg="git log --graph -n5"
-alias gw="git worktree"
 
 # github
 alias ghr="gh repo view --web"
@@ -85,29 +45,14 @@ alias ghc="gh pr create"
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME/"
 alias pbcopy="xclip -sel clip"
 alias pbpaste="xclip -selection clipboard -o"
-
-alias df="duf"
-alias ls="eza --icons=auto"
 alias open="xdg-open"
-alias di="diff -yb"
 # alias tar="tar -xzvf"
-
-function tree() {
-    name=${1:-"."}
-    count=${2:-"3"}
-    eza --icons -T $name -L $count
-}
 
 # coding
 alias nb="ninja"
-alias e="nvim ."
 
 # cpp
 alias tl="ctest"
-alias make="bear -- make -j8"
-
-# python
-alias py="python"
 
 # rust
 alias c="cargo"
@@ -115,8 +60,5 @@ alias c="cargo"
 # go
 alias g="go"
 
-# ctf
-alias disas="objdump -drwC -Mintel"
-
 # for seeing
-alias aliass="cat ~/scripts/aliases.sh | less"
+alias aliass="cat ~/scripts/aliases-core.sh ~/scripts/aliases.sh | less"

@@ -14,8 +14,6 @@ PATH="$PATH:/home/maximk/.dotnet/tools"
 # run arbitrary single file code
 source ~/scripts/runner.sh
 
-eval "$(zoxide init --cmd cd zsh)"
-
 # all most convenience alias
 source ~/scripts/aliases.sh
 
@@ -57,3 +55,6 @@ PATH="$PATH:$HOME/tools/binaryninja"
 
 alias john="$HOME/tools/john/run/john"
 alias matlab="$HOME/matlab/bin/matlab"
+
+# must stay last
+eval "$(zoxide init --cmd cd zsh)"

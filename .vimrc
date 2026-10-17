@@ -146,6 +146,46 @@ inoremap {;<CR> {<CR>};<ESC>O
 " file hub
 nnoremap - :Exp<CR>
 
+" comment: <C-s> like Comment.nvim. vim 9.1+ ships gc/gcc, older vim gets
+" a small commentstring toggle instead
+silent! packadd comment
+if maparg('gcc', 'n') !=# ''
+  nmap <C-s> gcc
+  xmap <C-s> gc
+else
+  function! s:ToggleComment() range abort
+    let l:parts = split(empty(&commentstring) ? '# %s' : &commentstring, '%s', 1)
+    let l:left = substitute(l:parts[0], '\s*$', '', '')
+    let l:right = substitute(get(l:parts, 1, ''), '^\s*', '', '')
+    let l:pat = '^\s*\V' . escape(l:left, '\')
+
+    " uncomment only if every non-blank line is already commented
+    let l:lines = filter(getline(a:firstline, a:lastline), 'v:val =~ "\\S"')
+    let l:commented = !empty(l:lines) && empty(filter(copy(l:lines), 'v:val !~ l:pat'))
+
+    for l:lnum in range(a:firstline, a:lastline)
+      let l:line = getline(l:lnum)
+      if l:line !~ '\S'
+        continue
+      endif
+      if l:commented
+        let l:line = substitute(l:line, '^\(\s*\)\V' . escape(l:left, '\') . '\m \?', '\1', '')
+        if !empty(l:right)
+          let l:line = substitute(l:line, '\m \?\V' . escape(l:right, '\') . '\m\s*$', '', '')
+        endif
+      else
+        let l:line = substitute(l:line, '^\(\s*\)', '\1' . escape(l:left, '\&') . ' ', '')
+        if !empty(l:right)
+          let l:line .= ' ' . l:right
+        endif
+      endif
+      call setline(l:lnum, l:line)
+    endfor
+  endfunction
+  nnoremap <silent> <C-s> :call <SID>ToggleComment()<CR>
+  xnoremap <silent> <C-s> :call <SID>ToggleComment()<CR>
+endif
+
 " ------------------------------------------------------------------ filetypes
 augroup mine
   autocmd!

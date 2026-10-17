@@ -57,6 +57,12 @@ something required is missing. `--install` fetches what doesn't need root into
 | recommended | fd | yes |
 | recommended | xclip/xsel, node | no |
 
+On a network home (CAEN's is an SMB share) nvim is installed to
+`/var/tmp/$USER/nvim` on local disk with `~/.local/nvim` symlinked to it, and
+`remote.sh` keeps nvim's cache/undo/shada there too, since small-file reads over
+the share make nvim slow. The local copy is per machine, so on a different CAEN
+box (or after `/var/tmp` is cleaned) re-run `deps.sh --install`.
+
 The oh-my-zsh checks are skipped when zsh isn't installed. Re-run `deps.sh`
 after installing to confirm everything shows `ok`.
 

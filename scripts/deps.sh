@@ -16,6 +16,16 @@ aarch64 | arm64) rust_arch=aarch64 go_arch=arm64 nvim_arch=arm64 ts_arch=arm64 ;
 *) rust_arch=unknown ;;
 esac
 
+# network homes (CAEN's is SMB) make nvim's many small reads slow, so nvim goes on
+# local disk there, with ~/.local/nvim as a symlink (dangling on other machines)
+LOCAL_DIR="/var/tmp/$USER"
+net_home() {
+	case $(stat -f -c %T "$HOME" 2>/dev/null) in
+	cifs | smb* | nfs* | afs | fuse*) return 0 ;;
+	esac
+	return 1
+}
+
 missing=0
 have() { command -v "$1" >/dev/null 2>&1; }
 ok() { printf '  \033[32mok\033[0m    %-14s %s\n' "$1" "$2"; }
@@ -60,14 +70,20 @@ install_tree_sitter() {
 	curl -fsSL "$url" | gunzip >"$BIN/tree-sitter" && chmod +x "$BIN/tree-sitter"
 }
 
-# goes in ~/.local/nvim, which remote.sh puts on PATH
+# goes in ~/.local/nvim (which remote.sh puts on PATH), or on local disk behind a
+# ~/.local/nvim symlink when home is a network share
 install_nvim() {
-	local url
+	local url dest="$HOME/.local/nvim"
 	url=$(asset_url neovim/neovim "nvim-linux-${nvim_arch}\.tar\.gz$") || true
 	[ -n "$url" ] || { echo "    no nvim release asset"; return 1; }
+	net_home && dest="$LOCAL_DIR/nvim"
 	echo "    fetching $url"
-	rm -rf "$HOME/.local/nvim" && mkdir -p "$HOME/.local/nvim" &&
-		curl -fsSL "$url" | tar -xz -C "$HOME/.local/nvim" --strip-components=1
+	rm -rf "$dest" && mkdir -p "$dest" &&
+		curl -fsSL "$url" | tar -xz -C "$dest" --strip-components=1 || return 1
+	if [ "$dest" != "$HOME/.local/nvim" ]; then
+		rm -rf "$HOME/.local/nvim" && ln -s "$dest" "$HOME/.local/nvim"
+		echo "    on local disk: $dest"
+	fi
 }
 
 # check NAME MIN_VERSION VERSION_CMD... ; installs via install_NAME when --install
@@ -112,7 +128,12 @@ export PATH="$BIN:$HOME/.local/nvim/bin:$PATH"
 echo "required"
 check git "" git --version
 check fzf 0.59 fzf --version
-check nvim 0.11 nvim --version
+if net_home && [ -d "$HOME/.local/nvim" ] && [ ! -L "$HOME/.local/nvim" ]; then
+	bad nvim "~/.local/nvim is on the network home (slow), --install moves it to $LOCAL_DIR"
+	[ $install -eq 1 ] && install_nvim && echo "    installed nvim"
+else
+	check nvim 0.11 nvim --version
+fi
 check rg "" rg --version
 check zoxide "" zoxide --version
 check tree-sitter 0.25 tree-sitter --version

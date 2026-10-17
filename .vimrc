@@ -122,7 +122,7 @@ nnoremap <Right> <C-w>l
 nnoremap <leader>l :set number!<CR>
 
 " search
-nnoremap ;f :find
+nnoremap ;f :find<Space>
 nnoremap ;g :call <SID>Grep()<CR>
 nnoremap ;z :browse oldfiles<CR>
 
@@ -186,9 +186,32 @@ else
   xnoremap <silent> <C-s> :call <SID>ToggleComment()<CR>
 endif
 
+" ------------------------------------------------------------------ quickfix
+" in the quickfix list, j/k (J/K by 5) open the item and come back, D drops it
+function! s:QfDelete() abort
+  let l:items = getqflist()
+  let l:line = line('.')
+  call remove(l:items, l:line - 1)
+  call setqflist(l:items, 'r')
+  if empty(l:items)
+    return
+  endif
+  call cursor(min([l:line, len(l:items)]), 1)
+  execute "normal! \<CR>\<C-w>j"
+endfunction
+
+function! s:QfMaps() abort
+  nnoremap <buffer> <silent> j j<CR><C-w>j
+  nnoremap <buffer> <silent> k k<CR><C-w>j
+  nnoremap <buffer> <silent> J 5j<CR><C-w>j
+  nnoremap <buffer> <silent> K 5k<CR><C-w>j
+  nnoremap <buffer> <silent> D :call <SID>QfDelete()<CR>
+endfunction
+
 " ------------------------------------------------------------------ filetypes
 augroup mine
   autocmd!
+  autocmd FileType qf call s:QfMaps()
   autocmd FileType html,css,javascript,typescript,cmake setlocal tabstop=2 shiftwidth=2 softtabstop=2
   autocmd FileType c,cpp setlocal cindent cinoptions=l1,(s
 augroup END

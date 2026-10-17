@@ -82,7 +82,7 @@ dot <git operation>
 nvim config (its own repo): commit and push inside `~/.config/nvim`, then
 record the new commit here
 ```
-dot add .config/nvim && dot commit -m "bump nvim"
+dot add ~/.config/nvim && dot commit -m "bump nvim"
 ```
 and pull it on other machines with `dot pull && dot submodule update`.
 

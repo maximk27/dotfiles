@@ -69,9 +69,12 @@ echo '. ~/scripts/remote.sh' >> ~/.bashrc
 `remote.sh` puts `~/.local/bin` on PATH, loads the portable aliases, and sets
 `NVIM_LITE=1` so nvim starts without plugins.
 
-Nested tmux: the remote tmux puts its status bar at the bottom (the local one is
-at the top). Press `C-]` to turn the local tmux off so every key, prefix
-included, goes to the remote one; press `C-]` again to turn it back on.
+Nested tmux: the bar colour shows the machine (blue local, orange remote) and
+the top bar is the tmux your prefix goes to. Press `C-]` to turn the local tmux
+off so every key, prefix included, goes to the remote one: the local bar drops
+to the bottom, the remote bar moves to the top, and the mouse moves with it.
+Press `C-]` again to swap back. Copying in the remote tmux reaches the local
+clipboard over OSC 52.
 
 ## Maintain
 Files

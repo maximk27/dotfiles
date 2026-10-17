@@ -56,5 +56,6 @@ PATH="$PATH:$HOME/tools/binaryninja"
 alias john="$HOME/tools/john/run/john"
 alias matlab="$HOME/matlab/bin/matlab"
 
-# must stay last
+# must stay last (doctor warns when tools wrap the shell, e.g. claude/tmux snapshots)
+export _ZO_DOCTOR=0
 eval "$(zoxide init --cmd cd zsh)"

@@ -24,4 +24,5 @@
     "editor.hideCursorInOverviewRuler": true,
     "window.customMenuBarAltFocus": false,
     "window.enableMenuBarMnemonics": false,
+    "vaporview.scrollingMode": "Mouse",
 }

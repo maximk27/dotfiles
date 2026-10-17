@@ -1,5 +1,8 @@
 # new stuff
-alias cc="openclaude"
+alias cc="claude"
+
+# tmux: reattach if a server is running, otherwise start one (continuum restores)
+alias t="tmux attach 2>/dev/null || tmux"
 
 # umich
 alias vcs="ssh -f -L 5951:localhost:5951 maximk@login-course.engin.umich.edu 'sleep 30' && vncviewer localhost:5951"

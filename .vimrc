@@ -233,11 +233,32 @@ function! s:Osc52Yank() abort
     endif
 endfunction
 
+" remember cursor position per netrw directory
+let s:netrw_views = {}
+function! s:NetrwSave() abort
+  if exists('b:netrw_curdir')
+    let s:netrw_views[b:netrw_curdir] = winsaveview()
+  endif
+endfunction
+function! s:NetrwRestore() abort
+  let l:buf = bufnr()
+  call timer_start(0, {-> s:NetrwRestoreNow(l:buf)})
+endfunction
+function! s:NetrwRestoreNow(buf) abort
+  if bufnr() == a:buf && &filetype ==# 'netrw' && exists('b:netrw_curdir')
+        \ && has_key(s:netrw_views, b:netrw_curdir)
+    call winrestview(s:netrw_views[b:netrw_curdir])
+  endif
+endfunction
+
 augroup mine
   autocmd!
   autocmd FileType qf call s:QfMaps()
   autocmd FileType html,css,javascript,typescript,cmake setlocal tabstop=2 shiftwidth=2 softtabstop=2
   autocmd FileType c,cpp setlocal cindent cinoptions=l1,(s)
   autocmd FileType netrw nmap <buffer> f <CR>
+  autocmd BufLeave * if &filetype ==# 'netrw' | call s:NetrwSave() | endif
+  autocmd FileType netrw call s:NetrwRestore()
+  autocmd BufEnter * if &filetype ==# 'netrw' | call s:NetrwRestore() | endif
   autocmd TextYankPost * call s:Osc52Yank()
 augroup END

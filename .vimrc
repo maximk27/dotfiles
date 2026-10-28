@@ -214,4 +214,5 @@ augroup mine
   autocmd FileType qf call s:QfMaps()
   autocmd FileType html,css,javascript,typescript,cmake setlocal tabstop=2 shiftwidth=2 softtabstop=2
   autocmd FileType c,cpp setlocal cindent cinoptions=l1,(s
+  autocmd FileType netrw nmap <buffer> f <CR>
 augroup END

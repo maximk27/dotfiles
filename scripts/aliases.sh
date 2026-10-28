@@ -1,6 +1,9 @@
 # portable stuff first
 source ~/scripts/aliases-core.sh
 
+
+fix_trackpad() { sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi };
+
 # new stuff
 alias cc="claude"
 

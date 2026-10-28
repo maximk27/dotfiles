@@ -62,7 +62,8 @@ fi
 # coding
 alias e="nvim ."
 alias py="python3"
-have bear && alias make="bear -- make -j8"
+alias make="make -j8"
+have bear && alias mb="bear -- make -j8"
 
 # ctf
 alias disas="objdump -drwC -Mintel"

@@ -10,6 +10,7 @@ set ttimeoutlen=10
 let &t_SI = "\e[6 q" "
 let &t_EI = "\e[2 q" "
 
+
 " ------------------------------------------------------------------ colors
 " truecolor (the export only has gui colors), incl. inside tmux
 if has('termguicolors')
@@ -209,10 +210,34 @@ function! s:QfMaps() abort
 endfunction
 
 " ------------------------------------------------------------------ filetypes
+
+
+
+function! s:Osc52Yank() abort
+    if v:event.operator !=# 'y'
+        return
+    endif
+    if v:event.regname !=# '' && v:event.regname !=# '+' && v:event.regname !=# '*'
+        return
+    endif
+    let l:text = join(v:event.regcontents, "\n")
+    if v:event.regtype ==# 'V'
+        let l:text .= "\n"
+    endif
+    let l:b64 = substitute(system('base64', l:text), '\n', '', 'g')
+    let l:seq = "\e]52;c;" . l:b64 . "\x07"
+    if exists('*echoraw')
+        call echoraw(l:seq)
+    else
+        call writefile([l:seq], '/dev/tty', 'b')
+    endif
+endfunction
+
 augroup mine
   autocmd!
   autocmd FileType qf call s:QfMaps()
   autocmd FileType html,css,javascript,typescript,cmake setlocal tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd FileType c,cpp setlocal cindent cinoptions=l1,(s
+  autocmd FileType c,cpp setlocal cindent cinoptions=l1,(s)
   autocmd FileType netrw nmap <buffer> f <CR>
+  autocmd TextYankPost * call s:Osc52Yank()
 augroup END

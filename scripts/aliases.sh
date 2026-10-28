@@ -6,6 +6,7 @@ fix_trackpad() { sudo rmmod i2c_hid_acpi && sudo modprobe i2c_hid_acpi };
 
 # new stuff
 alias cc="claude"
+alias conn="/opt/cisco/secureclient/bin/vpn connect umvpn.umnet.umich.edu/umvpn-split-tunnel-alt"
 
 # umich
 alias vcs="ssh -f -L 5951:localhost:5951 maximk@login-course.engin.umich.edu 'sleep 30' && vncviewer localhost:5951"
